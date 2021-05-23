@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="chatui.css">
+    <script defer src="https://unpkg.com/vue@next"></script>
+    <script defer src="chatui.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div ref="messages" id="messages-section">
+            <div class="w3-container">
+                <div v-for="msg in messages" class="w3-panel w3-round w3-green">
+                    <p>{{ msg.text }}</p>
+                </div>
+            </div>
+        </div>
+        <div id="input-section">
+            <form class="w3-container" @submit.prevent>
+                <div v-if="token == null">
+                    <p>
+                        <label>User name</label>
+                        <input type="text" v-model="username" class="w3-input w3-border">
+                    </p>
+                    <p>
+                        <label>Password</label>
+                        <input type="password" v-model="password" class="w3-input w3-border">
+                    </p>
+                    <p class="w3-right buttons-panel">
+                        <button type="button" @click.prevent="register" class="w3-btn w3-red">Register</button>
+                        <button type="button" @click.prevent="login" class="w3-btn w3-green">Login</button>
+                    </p>
+                </div>
+                <div v-else>
+                    <p>
+                        <label>Enter your message:</label>
+                        <input ref="message" @keypress.enter="addMessage" type="text" v-model="messageText" class="w3-input w3-border">
+                    </p>
+                    <p class="w3-right buttons-panel">
+                        <button type="button" @click.prevent="refreshMessages" class="w3-btn w3-gray">Refresh</button>
+                        <button type="button" @click.prevent="addMessage" class="w3-btn w3-blue" >Send</button>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
