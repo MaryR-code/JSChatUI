@@ -119,7 +119,7 @@ const chatApp = {
     mounted() {
         console.debug("Starting app...");
         this.refreshMessages();
-        setInterval( () => this.refreshMessages(), 3000);
+        setInterval( () => this.refreshMessages(), 10000);
     }
 };
 
